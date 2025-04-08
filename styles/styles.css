@@ -139,11 +139,62 @@ h1 {
     flex-grow: 1;
 }
 
+.game-ratings {
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.rating {
+    color: #FFD700;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.rating i {
+    font-size: 1rem;
+}
+
+.metacritic {
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.metacritic.high {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.metacritic.medium {
+    background-color: #FFC107;
+    color: black;
+}
+
+.metacritic.low {
+    background-color: #f44336;
+    color: white;
+}
+
+.release-date {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
 .card-footer {
     padding: 1rem 1.5rem;
     border-top: 1px solid #e0e0e0;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
     background-color: #fafafa;
 }
 
@@ -279,4 +330,57 @@ footer {
 
 .favorite-btn i.active {
     color: gold;
+}
+
+.loading-spinner {
+    text-align: center;
+    padding: 2rem;
+    grid-column: 1 / -1;
+    color: #191970;
+}
+
+.loading-spinner i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.loading-spinner span {
+    display: block;
+    font-size: 1.1rem;
+}
+
+.game-stats {
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.ratings-count {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ratings-count i {
+    color: #191970;
+}
+
+.metacritic.high {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.metacritic.medium {
+    background-color: #FFC107;
+    color: black;
+}
+
+.metacritic.low {
+    background-color: #f44336;
+    color: white;
 }
