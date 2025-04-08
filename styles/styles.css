@@ -233,3 +233,50 @@ footer {
 .fa-star.fas {
     color: #FFD700;
 }
+
+
+/* page favoris */
+
+
+.favorites-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 5px;
+    color: #FFD700;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.favorites-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    background-color: rgba(255, 215, 0, 0.1);
+    border-radius: 50%;
+    z-index: -1;
+    transition: all 0.3s ease;
+}
+
+.favorites-btn:hover {
+    transform: scale(1.1);
+}
+
+.favorites-btn:hover::before {
+    width: 40px;
+    height: 40px;
+}
+
+.favorites-btn:active {
+    transform: scale(0.95);
+}
+
+.favorite-btn i.active {
+    color: gold;
+}
