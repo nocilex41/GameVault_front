@@ -35,10 +35,10 @@ class GameAPI {
     createGameCard(game) {
         const rating = game.rating ? (game.rating * 2).toFixed(1) : 'N/A';
         const metacritic = game.metacritic || 'N/A';
-        const ratings_count = game.ratings_count ? new Intl.NumberFormat('fr-FR').format(game.ratings_count) : '0';
         
         return `
             <div class="game-card">
+                <input type="hidden" class="game-slug" value="${game.slug}">
                 <img src="${game.background_image || 'https://placehold.co/300x200'}" alt="${game.name}">
                 <h3>${game.name}</h3>
                 <div class="game-ratings">
@@ -49,18 +49,12 @@ class GameAPI {
                         ${metacritic}
                     </span>
                 </div>
-                <div class="game-stats">
-                    <span class="ratings-count">
-                        <i class="fas fa-users"></i> ${ratings_count} avis
-                    </span>
-                </div>
-                <p>${game.description_raw ? game.description_raw.slice(0, 100) + '...' : 'Pas de description disponible'}</p>
                 <div class="card-footer">
                     <div class="release-date">
                         <i class="far fa-calendar"></i>
                         ${new Date(game.released).toLocaleDateString('fr-FR')}
                     </div>
-                    <button class="favorite-btn">
+                    <button class="favorite-btn" data-slug="${game.slug}">
                         <i class="fa-star far"></i>
                     </button>
                 </div>
@@ -76,7 +70,6 @@ class GameAPI {
             const games = await this.fetchGames();
             gamesGrid.innerHTML = games.map(game => this.createGameCard(game)).join('');
 
-            // Réinitialiser les écouteurs d'événements pour les favoris
             document.querySelectorAll('.favorite-btn').forEach(button => {
                 button.addEventListener('click', function() {
                     const star = this.querySelector('.fa-star');
