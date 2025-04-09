@@ -1,18 +1,5 @@
-document.querySelectorAll('.favorite-btn').forEach(button => {
-    button.addEventListener('click', function () {
-        const star = this.querySelector('.fa-star');
-        star.classList.toggle('far');
-        star.classList.toggle('fas');
-    });
-});
-
-document.querySelectorAll('.favorites-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const icon = btn.querySelector('i');
-        icon.classList.toggle('fas'); // ajoute ou retire l'étoile pleine
-        icon.classList.toggle('far'); // enlève ou ajoute l'étoile vide
-    });
-});
+// Ce fichier n'est plus utilisé, mais je le laisse ici au cas où
+// Tu peux le supprimer si tu n'en as plus besoin
 
 function fetchAndDisplayGames() {
     fetch('http://localhost:8000/api/game')
@@ -20,10 +7,9 @@ function fetchAndDisplayGames() {
         .then(games => {
             const container = document.querySelector('.games-grid');
 
-
             games.forEach(game => {
                 const rating = game.rating ?? 'N/A';
-                const metacritic = game.ratingsCount ?? 0; // À adapter si tu as une vraie note metacritic
+                const metacritic = game.ratingsCount ?? 0; 
                 const backgroundImage = game.backgroundImage || 'https://placehold.co/300x200';
 
                 const card = document.createElement('div');
@@ -50,8 +36,6 @@ function fetchAndDisplayGames() {
                 <input type="hidden" value="${game.id}" name="id">
                 <i class="fas fa-star"></i>
             </button>
-
-
         </div>
       `;
 
