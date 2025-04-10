@@ -33,7 +33,7 @@ function fetchAndDisplayGames() {
           </div>
           
           <button class="favorite-btn" data-slug="${game.slug}">
-                <input type="hidden" value="${game.id}" name="id">
+                <input type="hidden" value="${game.slug}" name="id">
                 <i class="fas fa-star"></i>
             </button>
         </div>

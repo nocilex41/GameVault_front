@@ -55,6 +55,7 @@ class GameAPI {
                         ${new Date(game.released).toLocaleDateString('fr-FR')}
                     </div>
                     <button class="favorite-btn" data-slug="${game.slug}" data-is-favorite="false">
+                        <input type="hidden" value="${game.slug}" name="id">
                         <i class="fa-star far"></i>
                     </button>
                 </div>
@@ -71,12 +72,12 @@ class GameAPI {
             gamesGrid.innerHTML = games.map(game => this.createGameCard(game)).join('');
 
             try {
-                const response = await fetch('http://localhost:8000/api/game/favorite');
+                const response = await fetch('http://localhost:8000/api/game');
                 const favoriteGames = await response.json();
 
                 games.forEach(game => {
                     const button = document.querySelector(`.favorite-btn[data-slug="${game.slug}"]`);
-                    if (favoriteGames.includes(game.slug)) {
+                    if (favoriteGames.some(favGame => favGame.slug === game.slug)) {
                         button.setAttribute('data-is-favorite', 'true');
                         button.querySelector('.fa-star').classList.remove('far');
                         button.querySelector('.fa-star').classList.add('fas');
@@ -116,29 +117,7 @@ class GameAPI {
                         } catch (error) {
                             console.error('Erreur lors de l\'ajout aux favoris:', error);
                         }
-                    } else {
-                        try {
-                            const response = await fetch('http://localhost:8000/api/game/favorite', {
-                                method: 'DELETE',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify({
-                                    slug: game.slug
-                                })
-                            });
-
-                            if (response.ok) {
-                                this.setAttribute('data-is-favorite', 'false');
-                                this.querySelector('.fa-star').classList.remove('fas');
-                                this.querySelector('.fa-star').classList.add('far');
-                            } else {
-                                console.error('Erreur lors de la suppression des favoris');
-                            }
-                        } catch (error) {
-                            console.error('Erreur lors de la suppression des favoris:', error);
-                        }
-                    }
+                    } 
                 });
             });
         } catch (error) {
