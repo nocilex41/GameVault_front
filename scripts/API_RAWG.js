@@ -71,12 +71,12 @@ class GameAPI {
             gamesGrid.innerHTML = games.map(game => this.createGameCard(game)).join('');
 
             try {
-                const response = await fetch('http://localhost:8000/api/game/favorite');
+                const response = await fetch('http://localhost:8000/api/game');
                 const favoriteGames = await response.json();
 
                 games.forEach(game => {
                     const button = document.querySelector(`.favorite-btn[data-slug="${game.slug}"]`);
-                    if (favoriteGames.includes(game.slug)) {
+                    if (favoriteGames.some(favGame => favGame.slug === game.slug)) {
                         button.setAttribute('data-is-favorite', 'true');
                         button.querySelector('.fa-star').classList.remove('far');
                         button.querySelector('.fa-star').classList.add('fas');
