@@ -3,19 +3,19 @@ document.addEventListener('click', function (e) {
 
     if (button) {
         const input = button.querySelector('input[name="id"]');
-        const gameId = input?.value;
+        const gameSlug = input?.value;
 
-        if (!gameId) {
-            console.error('ID du jeu introuvable dans le bouton.');
+        if (!gameSlug) {
+            console.error('SLUG du jeu introuvable dans le bouton.');
             return;
         }
 
         fetch('http://localhost:8000/api/game/delete', {
-            method: 'POST',
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ id: gameId })
+            body: JSON.stringify({ slug: gameSlug })
         })
             .then(response => {
                 if (!response.ok) throw new Error("Erreur lors de la suppression");
